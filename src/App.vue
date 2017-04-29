@@ -2,7 +2,9 @@
   <div id="app">
     <header-view></header-view>
     <router-view></router-view>
-    <player v-if="store.state.toggle"></player>
+    <transition name="fade">
+      <player v-if="store.state.toggle"></player>
+    </transition>
   </div>
 </template>
 
@@ -28,5 +30,12 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Prompt');
 * {
   font-family: 'Prompt', sans-serif;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to
+{
+  opacity: 0
 }
 </style>

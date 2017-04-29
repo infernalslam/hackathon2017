@@ -2,8 +2,9 @@
   <nav id="top" class="nav" style="background-color: #ff3; color: rgb(0, 0, 51) !important;">
         <div class="container">
             <div class="nav-left">
-              <a href="" class="nav-item is-tab router-link-active" style="color: rgb(0, 0, 51) !important;">หน้าเเรก</a>
-              <a href="" class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;">CreatePlaylist</a></div>
+              <router-link class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/">หน้าเเรก</router-link>
+              <router-link class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/create">สร้าง Playlist</router-link>
+            </div>
         </div>
     </nav>
 </template>

@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
-// import firebase from 'firebase'
-// const config = {
-//   apiKey: 'AIzaSyAUW0HgyW7nBGBrUPdlWmDBMpHUHOSwpB0',
-//   authDomain: 'fir-auth-12e52.firebaseapp.com',
-//   databaseURL: 'https://fir-auth-12e52.firebaseio.com',
-//   projectId: 'fir-auth-12e52',
-//   storageBucket: 'fir-auth-12e52.appspot.com',
-//   messagingSenderId: '221877419354'
-// }
-// firebase.initializeApp(config)
-// const db = firebase.database().ref('data')
+import firebase from 'firebase'
+const config = {
+  apiKey: 'AIzaSyAUW0HgyW7nBGBrUPdlWmDBMpHUHOSwpB0',
+  authDomain: 'fir-auth-12e52.firebaseapp.com',
+  databaseURL: 'https://fir-auth-12e52.firebaseio.com',
+  projectId: 'fir-auth-12e52',
+  storageBucket: 'fir-auth-12e52.appspot.com',
+  messagingSenderId: '221877419354'
+}
+firebase.initializeApp(config)
+const db = firebase.database().ref('data')
 
 const store = new Vuex.Store({
   state: {
@@ -43,6 +43,9 @@ const store = new Vuex.Store({
     },
     nextSong (context) {
       context.commit('nextSong')
+    },
+    uploadFirebase (context, payload) {
+      context.commit('uploadFirebase', payload)
     }
   },
   mutations: {
@@ -87,6 +90,9 @@ const store = new Vuex.Store({
           state.listTrack.push({...i})
         })
       }
+    },
+    uploadFirebase (state, payload) {
+      db.push(payload)
     }
   }
 })
