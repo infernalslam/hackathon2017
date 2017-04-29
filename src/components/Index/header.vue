@@ -48,20 +48,24 @@ export default {
       this.$router.push({path: '/'})
     },
     playlist () {
-      var vm = this
-      axios.get('https://fir-auth-12e52.firebaseio.com/playlists.json').then(res => {
-        let setData = []
-        for (var index in res.data) {
-          if (res.data.hasOwnProperty(index)) {
-            setData.push({
-              ...res.data[index],
-              id: '_' + Math.random().toString(36).substr(2, 9)
-            })
+      if (store.state.logOut === false) {
+        swal('Plase login', 'facebook (A_A)', 'error')
+      } else {
+        var vm = this
+        axios.get('https://fir-auth-12e52.firebaseio.com/playlists.json').then(res => {
+          let setData = []
+          for (var index in res.data) {
+            if (res.data.hasOwnProperty(index)) {
+              setData.push({
+                ...res.data[index],
+                id: '_' + Math.random().toString(36).substr(2, 9)
+              })
+            }
           }
-        }
-        vm.store.dispatch('getApiPlaylistUser', setData)
-        this.$router.push({path: '/playlistFeed'})
-      })
+          vm.store.dispatch('getApiPlaylistUser', setData)
+          this.$router.push({path: '/playlistFeed'})
+        })
+      }
     }
   }
 }

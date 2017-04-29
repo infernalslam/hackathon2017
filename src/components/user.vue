@@ -1,38 +1,70 @@
 <template>
-<div>
+<div class="container">
   <div class="columns">
-    <div class="column side1">
-      Search -> <input type="text" v-model="search">
 
-      <div v-for="show in store.state.getAllSong">
-        {{show.artist}} <br>
-        {{show.song}} <br>
-        <img :src="show.img" @click="addPlaylist(show)" style="width: 30%"> <br>
-        <hr>
+    <div class="column is-two-thirds">
+      <div class="field">
+          <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
+          <input class="input is-info" type="text" placeholder="Search" v-model="search">
       </div>
+      <br><br>
+      <article class="media" style="cursor: pointer;" v-for="show in listFilter" @click="addPlaylist(show)">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img :src="show.img">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{show.artist}}   | {{show.song}}</strong>
+              <br>
+              {{show.album}}
+            </p>
+          </div>
+        </div>
+      </article>
     </div>
+
+
+
+
     <div class="column">
-      <label class="label">Playlist name</label>
+      <label class="label">Playlist Add</label>
       <p class="control">
         <input class="input" type="text" placeholder="artist" v-model="playlistsName">
+        <button class="button" style="background: rgb(208, 1, 74); color: white;" @click="addPlaylistFirebase">Create Playlist</button>
+        <br>
+        <article class="media" v-for="show in playlists">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img :src="show.img">
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>{{show.artist}}   | {{show.song}}</strong>
+                <br>
+                {{show.album}}
+                <br>
+                <button class="delete" @click="delPlaylist(show.id)"></button>
+              </p>
+            </div>
+          </div>
+        </article>
+
+
       </p>
-        <hr>
-        <div v-for="show in playlists">
-          <span class="tag is-success" style="font-size: 16px;">{{show.song}}</span>
-          <span class="tag is-danger" style="font-size: 10px;">{{show.youtubeID}}</span>
-          <button class="delete" @click="delPlaylist(show.id)"></button>
-        </div>
-        <p class="control">
-          <button class="button" style="background: rgb(208, 1, 74); color: white;" @click="addPlaylistFirebase">Create Playlist</button>
-        </p>
-      </div>
+
     </div>
-    <div class="column"></div>
+</div>
   </div>
 </div>
 </template>
 
 <script>
+/* global swal */
 import store from '../vuex/store.js'
 import axios from 'axios'
 export default {
@@ -81,6 +113,17 @@ export default {
         img: 'https://res.cloudinary.com/dswcocz3f/image/upload/v1493484649/dvd-24527_640_emaf0d.png'
       }
       this.store.dispatch('addPlaylistUser', data)
+      swal('Add Music', this.playlistsName, 'success')
+      this.playlists = []
+      this.playlistsName = ''
+    }
+  },
+  computed: {
+    listFilter () {
+      let text = this.search.trim().toLowerCase()
+      return store.state.getAllSong.filter(item => {
+        return item.artist.toLowerCase().indexOf(text) > -1
+      })
     }
   }
 }

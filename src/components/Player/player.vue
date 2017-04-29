@@ -6,7 +6,7 @@
     </div>
   </transition> -->
 
-    <youtube :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended" class="test"></youtube>
+    <youtube :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended" style="visibility: hidden;"></youtube>
     <br><br><br><br><br><br>
 
   <div class="player-title">
@@ -44,28 +44,6 @@ export default {
 </script>
 
 <style>
-
-.test {
-  /*position: fixed;
-  z-index: 100;
-  bottom: 0;
-  right: 0;
-  height: 500px;
-  width: 200px;
-  background-color: #00013a;
-  color: white;*/
-  /*position: fixed;
-z-index: 100;
-bottom: 0;
-left: 0;
-height: 48%;
-width: 200px;*/
-/* background-color: #00013a; */
-/*color: white;*/
-/* transform: translate(-50%,-50%); */
-  /*clip: rect(0px,60px,200px,0px);*/
-  /*transform: translate(-50%,-50%);*/
-}
 .player-title {
   z-index: 99;
   right: 0;
