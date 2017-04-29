@@ -114,6 +114,13 @@ export default {
       this.data.song = ''
       this.data.youtubeID = ''
     }
+  },
+  mounted () {
+    if (this.store.state.admins.find(i => i.uid === this.store.state.uid)) {
+      console.log('success')
+    } else {
+      this.$router.push({ path: '/' })
+    }
   }
 }
 </script>

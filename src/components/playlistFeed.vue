@@ -17,8 +17,16 @@
           </div>
           <footer class="card-footer">
             <a class="card-footer-item" @click="store.dispatch('userPlaylist', show)">Play</a>
-            <!-- <a class="card-footer-item" style="background: red; color: white;">Delete</a> -->
+            <a class="card-footer-item" style="background: red; color: white;">View</a>
           </footer>
+
+          <article class="message is-primary">
+            <div class="message-body" v-for="track in show.playlists">
+              {{track.artist}} | {{track.song}}
+            </div>
+          </article>
+
+
         </div>
       </div>
     </div>
@@ -31,10 +39,12 @@ export default {
   name: 'playlistFeed',
   data () {
     return {
-      store
+      store,
+      showPlaylist: []
     }
   },
-  mounted () {}
+  mounted () {
+  }
 }
 </script>
 
