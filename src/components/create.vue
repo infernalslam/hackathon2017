@@ -68,6 +68,7 @@
 </template>
 
 <script>
+/* global swal */
 import store from '../vuex/store.js'
 export default {
   name: 'form',
@@ -81,16 +82,18 @@ export default {
   },
   methods: {
     addTrack (song, youtube) {
-      let data = {
-        id: '_' + Math.random().toString(36).substr(2, 9),
-        song: song,
-        youtubeID: youtube,
-        vote: 0,
-        artist: this.data.artist,
-        album: this.data.album,
-        img: this.img
+      if (song !== '' && youtube !== '') {
+        let data = {
+          id: '_' + Math.random().toString(36).substr(2, 9),
+          song: song,
+          youtubeID: youtube,
+          vote: 0,
+          artist: this.data.artist,
+          album: this.data.album,
+          img: this.img
+        }
+        this.tracks.push(data)
       }
-      this.tracks.push(data)
     },
     delTrack (id) {
       let index = this.tracks.findIndex(i => i.id === id)
@@ -105,14 +108,19 @@ export default {
         tracks: this.tracks
       }
       console.log('upload data :::', data)
-      this.store.dispatch('uploadFirebase', data)
-      this.data.artist = ''
-      this.data.album = ''
-      this.data.dec = ''
-      this.img = ''
-      this.tracks = []
-      this.data.song = ''
-      this.data.youtubeID = ''
+      if (data.album !== '' && data.artist !== '' && data.dec !== '' && data.img && data.tracks.length > 0) {
+        this.store.dispatch('uploadFirebase', data)
+        this.data.artist = ''
+        this.data.album = ''
+        this.data.dec = ''
+        this.img = ''
+        this.tracks = []
+        this.data.song = ''
+        this.data.youtubeID = ''
+        swal('Add', 'Success', 'success')
+      } else {
+        swal('No', 'ต้องกรอกข้อมูลให้ครบ', 'error')
+      }
     }
   },
   mounted () {

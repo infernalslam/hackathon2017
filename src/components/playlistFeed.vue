@@ -17,7 +17,7 @@
           </div>
           <footer class="card-footer">
             <a class="card-footer-item" @click="store.dispatch('userPlaylist', show)">Play</a>
-            <a class="card-footer-item" style="background: red; color: white;">View</a>
+            <a class="card-footer-item" style="background: red; color: white;" @click="del(show)">Delete</a>
           </footer>
 
           <article class="message is-primary">
@@ -35,6 +35,7 @@
 
 <script>
 import store from '../vuex/store.js'
+import axios from 'axios'
 export default {
   name: 'playlistFeed',
   data () {
@@ -44,6 +45,25 @@ export default {
     }
   },
   mounted () {
+  },
+  methods: {
+    del (data) {
+      this.store.dispatch('deletePlaylist', data)
+      var vm = this
+      axios.get('https://fir-auth-12e52.firebaseio.com/playlists.json').then(res => {
+        let setData = []
+        for (var index in res.data) {
+          if (res.data.hasOwnProperty(index)) {
+            setData.push({
+              ...res.data[index],
+              id: index
+            })
+          }
+        }
+        vm.store.dispatch('getApiPlaylistUser', setData)
+        this.$router.push({path: '/playlistFeed'})
+      })
+    }
   }
 }
 </script>

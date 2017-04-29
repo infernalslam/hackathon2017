@@ -85,6 +85,9 @@ const store = new Vuex.Store({
     },
     getApiAdmins (context, payload) {
       context.commit('getApiAdmins', payload)
+    },
+    deletePlaylist (context, payload) {
+      context.commit('deletePlaylist', payload)
     }
   },
   mutations: {
@@ -203,6 +206,9 @@ const store = new Vuex.Store({
     },
     getApiAdmins (state, payload) {
       state.admins = payload
+    },
+    deletePlaylist (state, payload) {
+      firebase.database().ref('playlists/' + payload.id).remove()
     }
   }
 })

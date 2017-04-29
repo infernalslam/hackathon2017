@@ -112,10 +112,14 @@ export default {
         playlists: this.playlists,
         img: 'https://res.cloudinary.com/dswcocz3f/image/upload/v1493484649/dvd-24527_640_emaf0d.png'
       }
-      this.store.dispatch('addPlaylistUser', data)
-      swal('Add Music', this.playlistsName, 'success')
-      this.playlists = []
-      this.playlistsName = ''
+      if (data.name !== '' && data.playlists.length > 0) {
+        this.store.dispatch('addPlaylistUser', data)
+        swal('Add Music', 'ชื่อ' + this.playlistsName, 'success')
+        this.playlists = []
+        this.playlistsName = ''
+      } else {
+        swal('No', 'ต้องกรอกข้อมูลให้ครบ', 'error')
+      }
     }
   },
   computed: {
