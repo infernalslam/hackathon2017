@@ -50,6 +50,7 @@ const store = new Vuex.Store({
       state.album = payload
     },
     listPlayer (state, payload) {
+      state.listTrack = []
       state.toggle = true
       state.listPlayer = {
         album: payload.album,
@@ -59,7 +60,9 @@ const store = new Vuex.Store({
         img: payload.img,
         tracks: payload.tracks
       }
-      state.listTrack = payload.tracks
+      payload.tracks.forEach(i => {
+        state.listTrack.push({...i})
+      })
     },
     closePlayer (state) {
       state.toggle = false
@@ -73,9 +76,16 @@ const store = new Vuex.Store({
       }
     },
     nextSong (state) {
+      state.listTrack.splice(0, 1)
       if (state.listTrack.length > 0) {
-        state.listTrack.splice(0, 1)
+        console.log('next')
       } else {
+        console.log('error')
+        let index = Math.floor(Math.random() * state.album.length) + 1
+        state.listPlayer = state.album[index]
+        state.listPlayer.tracks.forEach(i => {
+          state.listTrack.push({...i})
+        })
       }
     }
   }

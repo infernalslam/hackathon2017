@@ -2,7 +2,7 @@
 <div>
 
   <!-- <div style="position: fixed;"> -->
-    <youtube :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended" style="position: fixed;"></youtube>
+    <youtube :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended"></youtube>
   <!-- </div> -->
   <br><br><br><br><br><br>
 
