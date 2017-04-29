@@ -1,12 +1,18 @@
 <template>
 <div>
+
+  <!-- <div style="position: fixed;"> -->
+    <youtube :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended"></youtube>
+  <!-- </div> -->
+  <br><br><br><br><br><br>
+
   <div class="player-title">
     <div class="player-title-side">คุณกำลังฟัง</div>
     <div style="border-bottom: 3px solid #003;"></div>
     <div style="padding-top: 20px; padding-left: 10px;">
-      <i class="fa fa-step-forward" aria-hidden="true" style="cursor: pointer;"></i> &nbsp &nbsp
-      <i class="fa fa-window-close" aria-hidden="true"></i> &nbsp &nbsp
-      <span> เพลง  ชื่อศิลปิน อั้มบั้ล</span>
+      <i class="fa fa-step-forward" aria-hidden="true" ></i> &nbsp &nbsp
+      <i class="fa fa-window-close" aria-hidden="true" @click="store.dispatch('closePlayer', show)" style="cursor: pointer;"></i> &nbsp &nbsp
+      <span> เพลง   ชื่อศิลปิน {{store.state.listPlayer.artist}} อั้มบั้ล {{store.state.listPlayer.album}}</span>
     </div>
   </div>
 </div>
@@ -19,6 +25,12 @@ export default {
   data () {
     return {
       store
+    }
+  },
+  methods: {
+    ended () {
+      console.log('end music')
+      store.dispatch('nextSong')
     }
   }
 }

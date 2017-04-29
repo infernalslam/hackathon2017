@@ -17,7 +17,15 @@ const store = new Vuex.Store({
   state: {
     album: [],
     toggle: false,
-    listPlayer: []
+    listPlayer: {
+      album: '',
+      artist: '',
+      dec: '',
+      id: '',
+      img: '',
+      tracks: []
+    },
+    listTrack: []
   },
   getters: {
     allAlbum: state => { return state.album },
@@ -29,6 +37,12 @@ const store = new Vuex.Store({
     },
     listPlayer (context, payload) {
       context.commit('listPlayer', payload)
+    },
+    closePlayer (context) {
+      context.commit('closePlayer')
+    },
+    nextSong (context) {
+      context.commit('nextSong')
     }
   },
   mutations: {
@@ -36,6 +50,30 @@ const store = new Vuex.Store({
       state.album = payload
     },
     listPlayer (state, payload) {
+      state.toggle = true
+      state.listPlayer = {
+        album: payload.album,
+        artist: payload.artist,
+        dec: payload.dec,
+        id: payload.id,
+        img: payload.img,
+        tracks: payload.tracks
+      }
+      state.listTrack = payload.tracks
+    },
+    closePlayer (state) {
+      state.toggle = false
+      state.listPlayer = {
+        album: '',
+        artist: '',
+        dec: '',
+        id: '',
+        img: '',
+        tracks: []
+      }
+    },
+    nextSong (state) {
+      state.listTrack.splice(0, 1)
     }
   }
 })

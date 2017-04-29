@@ -2,7 +2,7 @@
   <div id="app">
     <header-view></header-view>
     <router-view></router-view>
-    <player v-show="store.state.toggle"></player>
+    <player v-if="store.state.toggle"></player>
   </div>
 </template>
 

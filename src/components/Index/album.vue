@@ -2,7 +2,7 @@
 <div id="main">
   <article class="thumb" v-for="show in store.state.album">
     <a class="image">
-      <img :src="show.img">
+      <img :src="show.img" @click="store.dispatch('listPlayer', show)">
     </a>
     <h2>
         {{show.artist}} <br>
