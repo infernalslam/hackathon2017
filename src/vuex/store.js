@@ -12,6 +12,7 @@ const config = {
 }
 firebase.initializeApp(config)
 const db = firebase.database().ref('data')
+const playlists = firebase.database().ref('playlists')
 
 const provider = new firebase.auth.FacebookAuthProvider()
 provider.addScope('public_profile')
@@ -34,12 +35,17 @@ const store = new Vuex.Store({
     listTrack: [],
     displayName: '',
     photoURL: '',
+    uid: '',
     loginFacebook: true,
-    logOut: false
+    logOut: false,
+    getAllSong: [],
+    playlistUser: []
   },
   getters: {
     allAlbum: state => { return state.album },
-    toggle: state => { return state.toggle }
+    toggle: state => { return state.toggle },
+    getAllSong: state => { return state.getAllSong },
+    playlistUser: state => { return state.playlistUser }
   },
   actions: {
     getApiAlbum (context, payload) {
@@ -59,6 +65,18 @@ const store = new Vuex.Store({
     },
     login (context) {
       context.commit('login')
+    },
+    logOut (context) {
+      context.commit('logOut')
+    },
+    getAllSong (context) {
+      context.commit('getAllSong')
+    },
+    addPlaylistUser (context, payload) {
+      context.commit('addPlaylistUser', payload)
+    },
+    getApiPlaylistUser (context, payload) {
+      context.commit('getApiPlaylistUser', payload)
     }
   },
   mutations: {
@@ -109,16 +127,50 @@ const store = new Vuex.Store({
     },
     login (state) {
       firebase.auth().signInWithPopup(provider).then(function (result) {
-        var token = result.credential.accessToken
+        // var token = result.credential.accessToken
         var user = result.user
-        console.log(token, user.photoURL, user.displayName)
         state.displayName = user.displayName
         state.photoURL = user.photoURL
+        state.uid = user.uid
+        console.log(state.uid, state.displayName)
         state.loginFacebook = false
         state.logOut = true
       }).catch(function (error) {
         console.log(error)
       })
+    },
+    logOut (state) {
+      state.playlistUser = []
+      firebase.auth().signOut().then(function () {
+        state.displayName = ''
+        state.photoURL = ''
+        state.loginFacebook = true
+        state.logOut = false
+      })
+    },
+    getAllSong (state) {
+      state.album.find(item => {
+        item.tracks.map(i => {
+          let arr = {
+            id: i.id,
+            artist: i.artist,
+            album: i.album,
+            img: i.img,
+            song: i.song,
+            vote: i.vote,
+            youtubeID: i.youtubeID
+          }
+          state.getAllSong.push(arr)
+        })
+      })
+    },
+    addPlaylistUser (state, payload) {
+      console.log(payload)
+      playlists.push(payload)
+    },
+    getApiPlaylistUser (state, payload) {
+      console.log(payload.filter(i => i.uid === state.uid))
+      state.playlistUser = payload.filter(i => i.uid === state.uid)
     }
   }
 })

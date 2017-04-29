@@ -3,7 +3,9 @@
         <div class="container">
             <div class="nav-left">
               <router-link class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/">หน้าเเรก</router-link>
-              <router-link class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/create">สร้าง Playlist</router-link>
+              <router-link class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/create">สร้าง Playlist (Admin)</router-link>
+              <div class="nav-item is-tab" style="color: rgb(0, 0, 51) !important; cursor: pointer;" @click="check()">สร้าง Playlist (User)</div>
+              <div class="nav-item is-tab" style="color: rgb(0, 0, 51) !important; cursor: pointer;"  @click="playlist()">Playlist Feed</div>
             </div>
             <div class="nav-right">
               <div class="nav-item is-tab" v-show="store.state.loginFacebook"
@@ -14,7 +16,7 @@
 
               <div class="nav-item is-tab" v-show="store.state.logOut"
               style="color: rgb(0, 0, 51) !important; cursor: pointer;"
-              @click="store.dispatch('login')">logOut | {{store.state.displayName}}</div>
+              @click="logout">logOut | {{store.state.displayName}}</div>
 
               <img :src="store.state.photoURL" v-show="store.state.logOut" class="profile">
 
@@ -23,12 +25,43 @@
 </template>
 
 <script>
+/* global swal */
+import axios from 'axios'
 import store from '../../vuex/store'
 export default {
   name: 'header',
   data () {
     return {
       store
+    }
+  },
+  methods: {
+    check () {
+      if (store.state.logOut === false) {
+        swal('Plase login', 'facebook (A_A)', 'error')
+      } else if (store.state.logOut === true) {
+        this.$router.push({ path: '/user' })
+      }
+    },
+    logout () {
+      this.store.dispatch('logOut')
+      this.$router.push({path: '/'})
+    },
+    playlist () {
+      var vm = this
+      axios.get('https://fir-auth-12e52.firebaseio.com/playlists.json').then(res => {
+        let setData = []
+        for (var index in res.data) {
+          if (res.data.hasOwnProperty(index)) {
+            setData.push({
+              ...res.data[index],
+              id: '_' + Math.random().toString(36).substr(2, 9)
+            })
+          }
+        }
+        vm.store.dispatch('getApiPlaylistUser', setData)
+        this.$router.push({path: '/playlistFeed'})
+      })
     }
   }
 }
