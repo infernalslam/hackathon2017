@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
-import firebase from 'firebase'
-const config = {
-  apiKey: 'AIzaSyAUW0HgyW7nBGBrUPdlWmDBMpHUHOSwpB0',
-  authDomain: 'fir-auth-12e52.firebaseapp.com',
-  databaseURL: 'https://fir-auth-12e52.firebaseio.com',
-  projectId: 'fir-auth-12e52',
-  storageBucket: 'fir-auth-12e52.appspot.com',
-  messagingSenderId: '221877419354'
-}
-firebase.initializeApp(config)
+// import firebase from 'firebase'
+// const config = {
+//   apiKey: 'AIzaSyAUW0HgyW7nBGBrUPdlWmDBMpHUHOSwpB0',
+//   authDomain: 'fir-auth-12e52.firebaseapp.com',
+//   databaseURL: 'https://fir-auth-12e52.firebaseio.com',
+//   projectId: 'fir-auth-12e52',
+//   storageBucket: 'fir-auth-12e52.appspot.com',
+//   messagingSenderId: '221877419354'
+// }
+// firebase.initializeApp(config)
 // const db = firebase.database().ref('data')
 
 const store = new Vuex.Store({
@@ -73,7 +73,10 @@ const store = new Vuex.Store({
       }
     },
     nextSong (state) {
-      state.listTrack.splice(0, 1)
+      if (state.listTrack.length > 0) {
+        state.listTrack.splice(0, 1)
+      } else {
+      }
     }
   }
 })
