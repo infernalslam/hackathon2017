@@ -13,6 +13,12 @@ const config = {
 firebase.initializeApp(config)
 const db = firebase.database().ref('data')
 
+const provider = new firebase.auth.FacebookAuthProvider()
+provider.addScope('public_profile')
+provider.setCustomParameters({
+  'display': 'popup'
+})
+
 const store = new Vuex.Store({
   state: {
     album: [],
@@ -25,7 +31,11 @@ const store = new Vuex.Store({
       img: '',
       tracks: []
     },
-    listTrack: []
+    listTrack: [],
+    displayName: '',
+    photoURL: '',
+    loginFacebook: true,
+    logOut: false
   },
   getters: {
     allAlbum: state => { return state.album },
@@ -46,6 +56,9 @@ const store = new Vuex.Store({
     },
     uploadFirebase (context, payload) {
       context.commit('uploadFirebase', payload)
+    },
+    login (context) {
+      context.commit('login')
     }
   },
   mutations: {
@@ -93,6 +106,19 @@ const store = new Vuex.Store({
     },
     uploadFirebase (state, payload) {
       db.push(payload)
+    },
+    login (state) {
+      firebase.auth().signInWithPopup(provider).then(function (result) {
+        var token = result.credential.accessToken
+        var user = result.user
+        console.log(token, user.photoURL, user.displayName)
+        state.displayName = user.displayName
+        state.photoURL = user.photoURL
+        state.loginFacebook = false
+        state.logOut = true
+      }).catch(function (error) {
+        console.log(error)
+      })
     }
   }
 })
