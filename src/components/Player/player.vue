@@ -16,7 +16,7 @@
       <i class="fa fa-step-forward" aria-hidden="true" @click="store.dispatch('nextSong')" style="cursor: pointer;"></i> &nbsp &nbsp
       <i class="fa fa-window-close" aria-hidden="true" @click="store.dispatch('closePlayer', show)" style="cursor: pointer;"></i> &nbsp &nbsp
       <span> เพลง {{store.state.listTrack[0].song}}  ชื่อศิลปิน {{store.state.listTrack[0].artist}} อั้มบั้ล {{store.state.listTrack[0].album}}</span>
-      <div style="float: right; cursor: pointer;"><i class="fa fa-bars" style="background-color:#ff3;"aria-hidden="true" @click="showList = true"></i></div>
+      <!-- <div style="float: right; cursor: pointer;"><i class="fa fa-bars" style="background-color:#ff3;"aria-hidden="true" @click="showList = true"></i></div> -->
     </div>
   </div>
 

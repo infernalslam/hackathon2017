@@ -39,13 +39,15 @@ const store = new Vuex.Store({
     loginFacebook: true,
     logOut: false,
     getAllSong: [],
-    playlistUser: []
+    playlistUser: [],
+    admins: []
   },
   getters: {
     allAlbum: state => { return state.album },
     toggle: state => { return state.toggle },
     getAllSong: state => { return state.getAllSong },
-    playlistUser: state => { return state.playlistUser }
+    playlistUser: state => { return state.playlistUser },
+    getApiAdmins: state => { return state.getApiAdmins }
   },
   actions: {
     getApiAlbum (context, payload) {
@@ -80,6 +82,9 @@ const store = new Vuex.Store({
     },
     userPlaylist (context, payload) {
       context.commit('userPlaylist', payload)
+    },
+    getApiAdmins (context, payload) {
+      context.commit('getApiAdmins', payload)
     }
   },
   mutations: {
@@ -195,6 +200,9 @@ const store = new Vuex.Store({
       payload.playlists.forEach(i => {
         state.listTrack.push({...i})
       })
+    },
+    getApiAdmins (state, payload) {
+      state.admins = payload
     }
   }
 })

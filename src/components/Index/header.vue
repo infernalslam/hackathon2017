@@ -3,7 +3,7 @@
         <div class="container">
             <div class="nav-left">
               <router-link class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/">หน้าเเรก</router-link>
-              <router-link class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/create">สร้าง Playlist (Admin)</router-link>
+              <router-link v-show="checkAdmins" class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/create">สร้าง Playlist (Admin)</router-link>
               <div class="nav-item is-tab" style="color: rgb(0, 0, 51) !important; cursor: pointer;" @click="check()">สร้าง Playlist (User)</div>
               <div class="nav-item is-tab" style="color: rgb(0, 0, 51) !important; cursor: pointer;"  @click="playlist()">Playlist Feed</div>
             </div>
@@ -35,6 +35,15 @@ export default {
   data () {
     return {
       store
+    }
+  },
+  computed: {
+    checkAdmins () {
+      if (this.store.state.admins.find(i => i.uid === this.store.state.uid)) {
+        return true
+      } else {
+        return false
+      }
     }
   },
   methods: {
