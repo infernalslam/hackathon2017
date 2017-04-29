@@ -17,7 +17,7 @@
           </div>
           <footer class="card-footer">
             <a class="card-footer-item" @click="store.dispatch('userPlaylist', show)">Play</a>
-            <a class="card-footer-item" style="background: red; color: white;">Delete</a>
+            <!-- <a class="card-footer-item" style="background: red; color: white;">Delete</a> -->
           </footer>
         </div>
       </div>

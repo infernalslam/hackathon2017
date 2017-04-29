@@ -144,6 +144,14 @@ const store = new Vuex.Store({
     },
     logOut (state) {
       state.playlistUser = []
+      state.listTrack = []
+      state.toggle = false
+      state.listPlayer = {
+        album: '',
+        artist: '',
+        img: '',
+        tracks: []
+      }
       firebase.auth().signOut().then(function () {
         state.displayName = ''
         state.photoURL = ''

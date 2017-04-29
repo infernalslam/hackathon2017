@@ -7,18 +7,20 @@
               <div class="nav-item is-tab" style="color: rgb(0, 0, 51) !important; cursor: pointer;" @click="check()">สร้าง Playlist (User)</div>
               <div class="nav-item is-tab" style="color: rgb(0, 0, 51) !important; cursor: pointer;"  @click="playlist()">Playlist Feed</div>
             </div>
-            <div class="nav-right">
+            <div class="nav-right" v-show="!store.state.logOut">
               <div class="nav-item is-tab" v-show="store.state.loginFacebook"
               style="color: rgb(0, 0, 51) !important; cursor: pointer;"
               @click="store.dispatch('login')">login</div>
             </div>
 
-
-              <div class="nav-item is-tab" v-show="store.state.logOut"
+            <div class="nav-right" v-show="store.state.logOut">
+              <div class="nav-item is-tab"
               style="color: rgb(0, 0, 51) !important; cursor: pointer;"
               @click="logout">logOut | {{store.state.displayName}}</div>
 
               <img :src="store.state.photoURL" v-show="store.state.logOut" class="profile">
+            </div>
+
 
         </div>
     </nav>
