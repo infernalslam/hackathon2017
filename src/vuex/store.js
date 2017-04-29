@@ -77,6 +77,9 @@ const store = new Vuex.Store({
     },
     getApiPlaylistUser (context, payload) {
       context.commit('getApiPlaylistUser', payload)
+    },
+    userPlaylist (context, payload) {
+      context.commit('userPlaylist', payload)
     }
   },
   mutations: {
@@ -171,6 +174,19 @@ const store = new Vuex.Store({
     getApiPlaylistUser (state, payload) {
       console.log(payload.filter(i => i.uid === state.uid))
       state.playlistUser = payload.filter(i => i.uid === state.uid)
+    },
+    userPlaylist (state, payload) {
+      state.listTrack = []
+      state.toggle = true
+      state.listPlayer = {
+        album: payload.album,
+        artist: payload.name,
+        img: payload.img,
+        tracks: payload.playlists
+      }
+      payload.playlists.forEach(i => {
+        state.listTrack.push({...i})
+      })
     }
   }
 })
