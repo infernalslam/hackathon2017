@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 Vue.use(VueYouTubeEmbed)
+var SocialSharing = require('vue-social-sharing')
+Vue.use(SocialSharing)
 
 Vue.config.productionTip = false
 
