@@ -1,22 +1,26 @@
 <template>
 <div>
-  <!-- <transition name="fade">
-    <div v-show="showList" class="test" v-for="show in store.state.listPlayer.tracks" @click="showList = false">
-      {{show.song}}
+
+<transition name="fade">
+  <div v-if="showList" class="test" @click.self="showList = false">
+    <div v-for="(s, i) in store.state.listPlayer.tracks" style="cursor: pointer;" @click="store.dispatch('selectSong', s)">
+      <span style="color: #ff3;"> # {{i + 1}} </span> {{s.song}} | {{s.artist}} <br>
     </div>
-  </transition> -->
+  </div>
+</transition>
+
 
     <youtube :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended" style="visibility: hidden;"></youtube>
-    <br><br><br><br><br><br>
+    <!-- <br><br><br><br><br><br> -->
 
   <div class="player-title">
-    <div class="player-title-side">คุณกำลังฟัง</div>
+    <div class="player-title-side" style="color: #ff3;">คุณกำลังฟัง</div>
     <div style="border-bottom: 3px solid #003;"></div>
     <div style="padding-top: 20px; padding-left: 10px;">
       <i class="fa fa-step-forward" aria-hidden="true" @click="store.dispatch('nextSong')" style="cursor: pointer;"></i> &nbsp &nbsp
       <i class="fa fa-window-close" aria-hidden="true" @click="store.dispatch('closePlayer', show)" style="cursor: pointer;"></i> &nbsp &nbsp
       <span> เพลง {{store.state.listTrack[0].song}}  ชื่อศิลปิน {{store.state.listTrack[0].artist}} อั้มบั้ล {{store.state.listTrack[0].album}}</span>
-      <!-- <div style="float: right; cursor: pointer;"><i class="fa fa-bars" style="background-color:#ff3;"aria-hidden="true" @click="showList = true"></i></div> -->
+      <div style="float: right; cursor: pointer;"><i class="fa fa-bars" style="background-color:#ff3;"aria-hidden="true" @click="showList = true"></i></div>
     </div>
   </div>
 
@@ -44,6 +48,17 @@ export default {
 </script>
 
 <style>
+.test {
+  position: fixed;
+  height: 82vh;
+  width: 300px;
+  top: 6%;
+  right: 0;
+  background-color: #00013a;
+  z-index: 100;
+  color: #fff;
+  padding: 45px 38px 13px 15px;
+}
 .player-title {
   z-index: 99;
   right: 0;

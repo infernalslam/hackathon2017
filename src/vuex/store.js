@@ -47,7 +47,8 @@ const store = new Vuex.Store({
     toggle: state => { return state.toggle },
     getAllSong: state => { return state.getAllSong },
     playlistUser: state => { return state.playlistUser },
-    getApiAdmins: state => { return state.getApiAdmins }
+    getApiAdmins: state => { return state.getApiAdmins },
+    listPlayer: state => { return state.listPlayer }
   },
   actions: {
     getApiAlbum (context, payload) {
@@ -88,6 +89,9 @@ const store = new Vuex.Store({
     },
     deletePlaylist (context, payload) {
       context.commit('deletePlaylist', payload)
+    },
+    selectSong (context, payload) {
+      context.commit('selectSong', payload)
     }
   },
   mutations: {
@@ -209,6 +213,9 @@ const store = new Vuex.Store({
     },
     deletePlaylist (state, payload) {
       firebase.database().ref('playlists/' + payload.id).remove()
+    },
+    selectSong (state, payload) {
+      state.listTrack.splice(0, 0, payload)
     }
   }
 })
