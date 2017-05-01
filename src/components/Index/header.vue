@@ -1,21 +1,21 @@
 <template>
-  <nav id="top" class="nav" style="background-color: #ff3; color: rgb(0, 0, 51) !important;">
+  <nav id="top" class="nav" style="background-color: rgb(0, 0, 51); color: #ff3 !important;">
         <div class="container">
             <div class="nav-left">
-              <router-link class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/">หน้าเเรก</router-link>
-              <router-link v-show="checkAdmins" class="nav-item is-tab" style="color: rgb(0, 0, 51) !important;" to="/create">สร้าง Playlist (Admin)</router-link>
-              <div class="nav-item is-tab" style="color: rgb(0, 0, 51) !important; cursor: pointer;" @click="check()">สร้าง Playlist (User)</div>
-              <div class="nav-item is-tab" style="color: rgb(0, 0, 51) !important; cursor: pointer;"  @click="playlist()">Playlist Feed</div>
+              <router-link class="nav-item is-tab" style="color: #ff3;" to="/">หน้าเเรก</router-link>
+              <router-link v-show="checkAdmins" class="nav-item is-tab" style="color:  #ff3 !important;" to="/create">สร้าง Playlist (Admin)</router-link>
+              <div class="nav-item is-tab" style="color: #ff3; cursor: pointer;" @click="check()">สร้าง Playlist (User)</div>
+              <div class="nav-item is-tab" style="color: #ff3; cursor: pointer;"  @click="playlist()">Playlist Feed</div>
             </div>
             <div class="nav-right" v-show="!store.state.logOut">
               <div class="nav-item is-tab" v-show="store.state.loginFacebook"
-              style="color: rgb(0, 0, 51) !important; cursor: pointer;"
+              style="color: #ff3; cursor: pointer;"
               @click="store.dispatch('login')">login</div>
             </div>
 
             <div class="nav-right" v-show="store.state.logOut">
               <div class="nav-item is-tab"
-              style="color: rgb(0, 0, 51) !important; cursor: pointer;"
+              style="color: #ff3; cursor: pointer;"
               @click="logout">logOut | {{store.state.displayName}}</div>
 
               <img :src="store.state.photoURL" v-show="store.state.logOut" class="profile">

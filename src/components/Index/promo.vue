@@ -1,8 +1,8 @@
 <template>
 <div class="hero-body">
   <div class="container">
-    <h1 class="title" style="text-align: center;">ใครก็สามารถ เพิ่มเพลงใหม่ๆ ได้</h1>
-    <h2 class="subtitle" style="text-align: center;">เป็นชุมชนดนตรีที่เชื่อมต่อนักดนตรีและแฟน ๆ ผ่านทางแพลตฟอร์มออนไลน์และกิจกรรมแบบออฟไลน์ <br> เช่น เพลงสตรีมมิ่ง</h2>
+    <h1 class="title" style="text-align: center;">ใครก็สามารถเพิ่มเพลงใหม่ๆ ได้ ตอนนี้  <font style="color: rgb(239, 56, 40)">{{count}}</font>  เพลง</h1>
+    <h2 class="subtitle" style="text-align: center;background-color: #00013a;color: #fff;">เป็นชุมชนดนตรีที่เชื่อมต่อนักดนตรีและแฟน ๆ ผ่านทางแพลตฟอร์มออนไลน์และกิจกรรมแบบออฟไลน์เช่น เพลงสตรีมมิ่ง</h2>
     <div class="columns">
       <div class="column" style="text-align: center;">
         <social-sharing url="https://fir-auth-12e52.firebaseapp.com" inline-template>
@@ -43,7 +43,23 @@
 </template>
 
 <script>
+import store from '../../vuex/store'
 export default {
-  name: 'promo'
+  name: 'promo',
+  data () {
+    return {
+      store
+    }
+  },
+  computed: {
+    count () {
+      var count = 0
+      this.store.state.album.forEach(i => {
+        count += i.tracks.length
+        console.log(i.tracks.length)
+      })
+      return count
+    }
+  }
 }
 </script>

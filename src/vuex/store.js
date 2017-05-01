@@ -169,6 +169,7 @@ const store = new Vuex.Store({
         state.photoURL = ''
         state.loginFacebook = true
         state.logOut = false
+        state.uid = ''
       })
     },
     getAllSong (state) {

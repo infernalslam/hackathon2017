@@ -4,7 +4,7 @@
 <transition name="fade">
   <div v-if="showList" class="test" @click.self="showList = false">
     <div v-for="(s, i) in store.state.listPlayer.tracks" style="cursor: pointer;" @click="store.dispatch('selectSong', s)">
-      <span style="color: #ff3;"> # {{i + 1}} </span> {{s.song}} | {{s.artist}} <br>
+      <span style="color: #ff3;"> # {{i + 1}} </span> {{s.song}} <br>
     </div>
   </div>
 </transition>
