@@ -36,7 +36,7 @@ export default {
           })
         }
       }
-      vm.store.dispatch('getApiAlbum', setData)
+      vm.store.dispatch('getApiAlbum', setData.reverse())
     })
   }
 }

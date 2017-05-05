@@ -7,6 +7,7 @@
             <h1 class="title" style="color: white;">
               สร้างเพลย์ลิสต์ (playlist)
             </h1>
+            <router-link to="/youtube"><h1 style="color: white; cursor: pointer; background: pink;">ค้นหาเพลงจาก youtube </h1></router-link>
             <div class="box">
               <label class="label">ชื่อศิลปิน</label>
               <p class="control">

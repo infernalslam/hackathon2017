@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import Create from '@/components/create'
 import User from '@/components/user'
 import playlistFeed from '@/components/playlistFeed'
+import Youtube from '@/components/youtube'
 Vue.use(Router)
 
 export default new Router({
@@ -27,6 +28,11 @@ export default new Router({
       path: '/playlistFeed',
       name: 'playlistFeed',
       component: playlistFeed
+    },
+    {
+      path: '/youtube',
+      name: 'youtube',
+      component: Youtube
     }
   ]
 })
