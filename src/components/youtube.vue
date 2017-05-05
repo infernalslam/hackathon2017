@@ -91,7 +91,7 @@ export default {
         youtubeID: data.id.videoId
       }
       this.tracks.push(set)
-      console.log(this.tracks)
+      swal('ได้ทำการเพิ่มเพลงเเล้ว', '🤣', 'success')
     },
     delTracks (data) {
       console.log(data.youtubeID)
