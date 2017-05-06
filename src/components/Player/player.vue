@@ -13,15 +13,15 @@
     <youtube :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended" style="visibility: hidden;"></youtube>
     <!-- <br><br><br><br><br><br> -->
 
-  <div class="player-title">
+  <div class="player-title" style="background-color: #000">
     <div class="player-title-side" style="color: #ff3;">คุณกำลังฟัง</div>
-    <div style="border-bottom: 3px solid #003;"></div>
+    <div style="border-bottom: 3px solid #ff3;"></div>
     <div style="padding-top: 20px; padding-left: 10px;">
       <i class="fa fa-step-forward" aria-hidden="true" @click="store.dispatch('nextSong')" style="cursor: pointer;"></i> &nbsp &nbsp
       <i class="fa fa-window-close" aria-hidden="true" @click="store.dispatch('closePlayer', show)" style="cursor: pointer;"></i> &nbsp &nbsp
       <!--<span> เพลง {{store.state.listTrack[0].song}}  ชื่อศิลปิน {{store.state.listTrack[0].artist}} อั้มบั้ล {{store.state.listTrack[0].album}}</span>-->
-      <span> เพลง {{store.state.listTrack[0].song}}  
-             ชื่อศิลปิน {{store.state.listTrack[0].artist}}
+      <span style="color: rgb(255, 255, 51)"> เพลง {{store.state.listTrack[0].song}}  
+             <!--ชื่อศิลปิน {{store.state.listTrack[0].artist}}-->
              <!--อั้มบั้ล {{store.state.listTrack[0].album}}-->
       </span>      
       <div style="float: right; cursor: pointer;"><i class="fa fa-bars" style="background-color:#ff3;"aria-hidden="true" @click="showList = true"></i></div>
@@ -83,7 +83,8 @@ export default {
   margin-bottom: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  background-color: #00013a;
+  /*background-color: #00013a;*/
+  background-color: #1440c1;
   margin-right: 70%;
   font-weight: 600;
 }
@@ -94,6 +95,14 @@ export default {
 .fade-enter, .fade-leave-to
 {
   opacity: 0
+}
+
+.fa-step-forward {
+  color: #ff3;
+}
+
+.fa-window-close {
+  color: #ff3;
 }
 
 </style>

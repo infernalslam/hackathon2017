@@ -43,6 +43,9 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Prompt');
+body {
+      background-color: #000;
+}
 * {
   font-family: 'Prompt', sans-serif;
 }

@@ -1,10 +1,13 @@
 <template>
   <div>
-    <section class="section">
+    <section class="section video-cover-plalist1" 
+    :style="
+    'background:  url(' + bg + ') no-repeat center center fixed;'
+    ">
     <div class="container">
       <div class="heading">
-        <h1 class="title">Playlist</h1>
-        <h2 class="subtitle">
+        <h1 class="title" :style=" 'color:' + font +';' ">Playlist</h1>
+        <h2 class="subtitle" :style=" 'color:' + font +';' ">
           Playlists by Mood and Genre
         </h2>
       </div>
@@ -14,7 +17,45 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'playlist1'
+  name: 'playlist1',
+  data () {
+    return {
+      bg: '',
+      query: ['taeyeon', 'iu', 'tiffany', 'Suzy', 'apink'],
+      data: [],
+      font: ''
+    }
+  },
+  mounted () {
+    this.getBg()
+  },
+  methods: {
+    getBg () {
+      let vm = this
+      let index = Math.floor(Math.random() * this.query.length) + 1
+      console.log(this.query[index])
+      let query = `http://api.giphy.com/v1/gifs/search?q=${this.query[index]}&api_key=dc6zaTOxFJmzC `
+      axios.get(query).then((res) => {
+        vm.data = res.data.data
+      }).then(() => {
+        let randombackground = Math.floor(Math.random() * vm.data.length) + 1
+        vm.bg = vm.data[randombackground].images.original.url
+        // rgb(239, 56, 40)
+        let r = Math.floor((Math.random() * 255) + 0)
+        let g = Math.floor((Math.random() * 255) + 0)
+        let b = Math.floor((Math.random() * 255) + 0)
+        vm.font = `rgb(${r}, ${g}, ${b})`
+      })
+    }
+  }
 }
 </script>
+
+<style>
+.video-cover-plalist1 {
+  /*background:  url(https://media.giphy.com/media/jqJ8RXZlNlLQA/giphy.gif) no-repeat center center fixed;*/
+  background-size: cover !important;
+}
+</style>
