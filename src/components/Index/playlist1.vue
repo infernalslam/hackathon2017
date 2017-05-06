@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="section video-cover-plalist1" 
+    <section class="section video-cover-plalist1 show" 
     :style="
     'background:  url(' + bg + ') no-repeat center center fixed;'
     ">
@@ -23,7 +23,7 @@ export default {
   data () {
     return {
       bg: '',
-      query: ['taeyeon', 'iu', 'tiffany', 'Suzy', 'apink'],
+      query: ['taeyeon', 'iu', 'tiffany', 'Suzy', 'apink', 'Jessica', 'Sandara', 'Sulli', 'Hyuna'],
       data: [],
       font: ''
     }
@@ -58,5 +58,8 @@ export default {
 .video-cover-plalist1 {
   /*background:  url(https://media.giphy.com/media/jqJ8RXZlNlLQA/giphy.gif) no-repeat center center fixed;*/
   background-size: cover !important;
+}
+.show {
+  height: 250px !important;
 }
 </style>
