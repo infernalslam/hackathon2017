@@ -14,7 +14,7 @@
       <div class="column">
 
         <div class="field">
-          <label class="label">playlist</label>
+          <label class="label" style="color: #fff;">playlist</label>
           <p class="control has-icons-left has-icons-right">
           <input class="input is-success" type="text" placeholder="playlist" v-model="playlist">
           <input class="input is-success" type="text" placeholder="album" v-model="album">

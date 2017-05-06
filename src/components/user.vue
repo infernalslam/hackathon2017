@@ -15,9 +15,9 @@
           </p>
         </figure>
         <div class="media-content">
-          <div class="content">
+          <div class="content" style="color: #fff;">
             <p>
-              <strong>{{show.artist}}   | {{show.song}}</strong>
+              <strong style="color: #fff;">{{show.artist}}   | {{show.song}}</strong>
               <br>
               {{show.album}}
             </p>
@@ -41,12 +41,12 @@
               <img :src="show.img">
             </p>
           </figure>
-          <div class="media-content">
+          <div class="media-content" style="color: #fff;">
             <div class="content">
               <p>
-                <strong>{{show.artist}}   | {{show.song}}</strong>
+                <strong style="color: #fff;">{{show.artist}}   | {{show.song}}</strong>
                 <br>
-                {{show.album}}
+                 <font style="color: #fff;">{{show.album}} </font>
                 <br>
                 <button class="delete" @click="delPlaylist(show.id)"></button>
               </p>

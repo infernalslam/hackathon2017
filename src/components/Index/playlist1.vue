@@ -6,9 +6,9 @@
     ">
     <div class="container">
       <div class="heading">
-        <h1 class="title" :style=" 'color:' + font +';' ">Playlist</h1>
+        <h1 class="title" :style=" 'color:' + font +';' ">Listening</h1>
         <h2 class="subtitle" :style=" 'color:' + font +';' ">
-          Playlists by Mood and Genre
+          เพลงที่กำลังจะเพิ่มเข้ามา Coming soon......
         </h2>
       </div>
     </div>
