@@ -10,13 +10,24 @@
 </transition>
 
 
-    <youtube :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended" style="visibility: hidden;"></youtube>
+    <youtube id="youtube" :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended" style="visibility: hidden;"></youtube>
     <!-- <br><br><br><br><br><br> -->
 
   <div class="player-title" style="background-color: #000">
     <div class="player-title-side" style="color: #ff3;">คุณกำลังฟัง</div>
     <div style="border-bottom: 3px solid #ff3;"></div>
     <div style="padding-top: 20px; padding-left: 10px;">
+
+
+        <span>
+          <i v-show="toggle === 'playVideo' " class="fa fa-play" aria-hidden="true" @click="pause('pauseVideo')"></i>
+          <i v-show="toggle === 'pauseVideo' " class="fa fa-pause" aria-hidden="true" @click="play('playVideo')"></i>
+        </span>
+        &nbsp &nbsp
+
+
+      <!--<span v-if="toggle === 'playVideo' " @click="pause('pauseVideo')"><i class="fa fa-play" aria-hidden="true"></i></span> &nbsp &nbsp-->
+      <!--<span v-if="toggle === 'pauseVideo' " @click="play('playVideo')"><i class="fa fa-pause" aria-hidden="true"></i></span> &nbsp &nbsp-->
       <i class="fa fa-step-forward" aria-hidden="true" @click="store.dispatch('nextSong')" style="cursor: pointer;"></i> &nbsp &nbsp
       <i class="fa fa-window-close" aria-hidden="true" @click="store.dispatch('closePlayer', show)" style="cursor: pointer;"></i> &nbsp &nbsp
       <!--<span> เพลง {{store.state.listTrack[0].song}}  ชื่อศิลปิน {{store.state.listTrack[0].artist}} อั้มบั้ล {{store.state.listTrack[0].album}}</span>-->
@@ -39,13 +50,28 @@ export default {
   data () {
     return {
       store,
-      showList: false
+      showList: false,
+      toggle: 'pauseVideo'
     }
   },
   methods: {
     ended () {
       console.log('end music')
       store.dispatch('nextSong')
+    },
+    pause (event) {
+      console.log('pause', event)
+      this.toggle = event
+      let div = document.getElementById('youtube')
+      let iframe = div.getElementsByTagName('iframe')[0].contentWindow
+      iframe.postMessage('{"event":"command","func":"' + 'playVideo' + '","args":""}', '*')
+    },
+    play (event) {
+      console.log('play', event)
+      this.toggle = event
+      let div = document.getElementById('youtube')
+      let iframe = div.getElementsByTagName('iframe')[0].contentWindow
+      iframe.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*')
     }
   }
 }
@@ -102,6 +128,12 @@ export default {
 }
 
 .fa-window-close {
+  color: #ff3;
+}
+.fa-play {
+  color: #ff3;
+}
+.fa-pause {
   color: #ff3;
 }
 
