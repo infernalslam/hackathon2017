@@ -36,12 +36,13 @@ export default {
       let vm = this
       let index = Math.floor(Math.random() * this.query.length) + 1
       console.log(this.query[index])
-      let query = `http://api.giphy.com/v1/gifs/search?q=${this.query[index]}&api_key=dc6zaTOxFJmzC `
+      let query = `https://api.giphy.com/v1/gifs/search?q=${this.query[index]}&api_key=dc6zaTOxFJmzC`
       axios.get(query).then((res) => {
         vm.data = res.data.data
       }).then(() => {
         let randombackground = Math.floor(Math.random() * vm.data.length) + 1
         vm.bg = vm.data[randombackground].images.original.url
+        console.log('รูปภาพ : ', vm.bg)
         // rgb(239, 56, 40)
         let r = Math.floor((Math.random() * 255) + 0)
         let g = Math.floor((Math.random() * 255) + 0)
