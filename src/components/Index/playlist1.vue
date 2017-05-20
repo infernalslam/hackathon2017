@@ -17,13 +17,14 @@
 </template>
 
 <script>
+import query from '../../source/query.js'
 import axios from 'axios'
 export default {
   name: 'playlist1',
   data () {
     return {
       bg: '',
-      query: ['taeyeon', 'iu', 'tiffany', 'Suzy', 'apink', 'Jessica', 'Sandara', 'Sulli', 'Hyuna'],
+      query: query,
       data: [],
       font: ''
     }
@@ -60,6 +61,6 @@ export default {
   background-size: cover !important;
 }
 .show {
-  height: 400px !important;
+  height: 800px !important;
 }
 </style>

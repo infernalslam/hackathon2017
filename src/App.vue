@@ -45,7 +45,10 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Prompt');
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 body {
-      background-color: #000;
+      /*background-color: #000;*/
+      background: url(http://subtlepatterns.com/patterns/scribble_light.png) ;
+      /*background: linear-gradient(135deg,#1a8efa,#5931b5);*/
+      /*background: linear-gradient(to right, rgba(73,155,234,1) 24%, rgba(73,155,234,1) 31%, rgba(69,146,223,1) 35%, rgba(0,0,51,1) 100%);*/
 }
 * {
   /*font-family: 'Prompt', sans-serif;*/
