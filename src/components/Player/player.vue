@@ -14,7 +14,7 @@
     <!-- <br><br><br><br><br><br> -->
 
   <div class="player-title" style="background-color: #000">
-    <div class="player-title-side" style="color: #ff3;">คุณกำลังฟัง</div>
+    <div class="player-title-side" style="color: #ff3;">Your listening ...</div>
     <div style="border-bottom: 3px solid #ff3;"></div>
     <div style="padding-top: 20px; padding-left: 10px;">
 
@@ -31,10 +31,10 @@
       <i class="fa fa-step-forward" aria-hidden="true" @click="store.dispatch('nextSong')" style="cursor: pointer;"></i> &nbsp &nbsp
       <i class="fa fa-window-close" aria-hidden="true" @click="store.dispatch('closePlayer', show)" style="cursor: pointer;"></i> &nbsp &nbsp
       <!--<span> เพลง {{store.state.listTrack[0].song}}  ชื่อศิลปิน {{store.state.listTrack[0].artist}} อั้มบั้ล {{store.state.listTrack[0].album}}</span>-->
-      <span style="color: rgb(255, 255, 51)"> เพลง {{store.state.listTrack[0].song}}  
+      <span style="color: rgb(255, 255, 51)"> SONG  : {{ store.state.listTrack[0].song}}
              <!--ชื่อศิลปิน {{store.state.listTrack[0].artist}}-->
              <!--อั้มบั้ล {{store.state.listTrack[0].album}}-->
-      </span>      
+      </span>
       <div style="float: right; cursor: pointer;"><i class="fa fa-bars" style="background-color:#ff3;"aria-hidden="true" @click="showList = true"></i></div>
     </div>
   </div>

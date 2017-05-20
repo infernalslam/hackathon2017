@@ -1,8 +1,10 @@
 <template>
   <div>
     <promo />
-    <playlist1 />
+    <!-- <playlist1 /> -->
     <album />
+    <playlist1 />
+    <playlist1 />
   </div>
 </template>
 

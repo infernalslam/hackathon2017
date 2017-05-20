@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="section video-cover-plalist1 show" 
+    <section class="section video-cover-plalist1 show"
     :style="
     'background:  url(' + bg + ') no-repeat center center fixed;'
     ">
@@ -8,7 +8,7 @@
       <div class="heading">
         <h1 class="title" :style=" 'color:' + font +';' ">Listening</h1>
         <h2 class="subtitle" :style=" 'color:' + font +';' ">
-          เพลงที่กำลังจะเพิ่มเข้ามา Coming soon......
+          Music is  Coming soon......
         </h2>
       </div>
     </div>
@@ -60,6 +60,6 @@ export default {
   background-size: cover !important;
 }
 .show {
-  height: 250px !important;
+  height: 400px !important;
 }
 </style>

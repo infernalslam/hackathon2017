@@ -1,10 +1,12 @@
 <template>
+  <div>
+  <div class="loader loading"></div>
   <nav id="top" class="nav" style="background-color: rgb(0, 0, 51); color: #ff3 !important;">
         <div class="container">
             <div class="nav-left">
-              <router-link class="nav-item is-tab" style="color: #ff3;" to="/">หน้าเเรก</router-link>
-              <router-link v-show="checkAdmins" class="nav-item is-tab" style="color:  #ff3 !important;" to="/create">สร้าง Playlist (Admin)</router-link>
-              <div class="nav-item is-tab" style="color: #ff3; cursor: pointer;" @click="check()">สร้าง Playlist (User)</div>
+              <router-link class="nav-item is-tab" style="color: #ff3;" to="/">HOME</router-link>
+              <router-link v-show="checkAdmins" class="nav-item is-tab" style="color:  #ff3 !important;" to="/create">Create Playlist (Admin)</router-link>
+              <div class="nav-item is-tab" style="color: #ff3; cursor: pointer;" @click="check()">Create Playlist (User)</div>
               <div class="nav-item is-tab" style="color: #ff3; cursor: pointer;"  @click="playlist()">Playlist Feed</div>
             </div>
             <div class="nav-right" v-show="!store.state.logOut">
@@ -24,6 +26,7 @@
 
         </div>
     </nav>
+  </div>
 </template>
 
 <script>
@@ -95,4 +98,39 @@ background: red;
 -webkit-border-radius: 50px;
 border-radius: 205px;
 }
+.loader {
+  -webkit-transition: height 1s;
+  transition: height 1s;
+  -webkit-animation: barberpole 3s linear infinite;
+  animation: barberpole 1s linear infinite;
+  opacity: 0;
+  z-index: 9999;
+  height: 5px;
+  width: 100%;
+  background: white;
+  top: 0;
+  background-size: 100px 100px;
+  background: linear-gradient(to right,#ff2d55, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+  background: linear-gradient(to right,#ff2d55,#4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+}
+.loader.loading {
+  opacity: 1;
+}
+@-webkit-keyframes barberpole {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 2000px 300px;
+  }
+}
+@keyframes barberpole {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 2000px 300px;
+  }
+}
+
 </style>

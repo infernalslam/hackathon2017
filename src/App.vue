@@ -43,11 +43,13 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Prompt');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 body {
       background-color: #000;
 }
 * {
-  font-family: 'Prompt', sans-serif;
+  /*font-family: 'Prompt', sans-serif;*/
+  font-family: 'Raleway', sans-serif;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
