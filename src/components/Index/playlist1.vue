@@ -61,6 +61,6 @@ export default {
   background-size: cover !important;
 }
 .show {
-  height: 800px !important;
+  height: 100vh !important;
 }
 </style>

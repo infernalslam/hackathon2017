@@ -10,7 +10,14 @@
 </transition>
 
 
-    <youtube id="youtube" :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}" @ended="ended" style="visibility: hidden;"></youtube>
+    <youtube id="youtube" :video-id="store.state.listTrack[0].youtubeID" :player-vars="{autoplay: 1}"
+     @ended="ended"
+     style="
+     visibility: hidden;
+     width: 0;
+     height: 0;
+     position: fixed;
+     "></youtube>
     <!-- <br><br><br><br><br><br> -->
 
   <div class="player-title" style="background-color: #000">
