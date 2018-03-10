@@ -1,5 +1,11 @@
 # Change coming soon
 # hackathon
+# working in branch
+```
+master is produnction
+development is pre-produnction
+version2.0 is new features prepare! merge in development branch
+```
 
 > A Vue.js project
 
